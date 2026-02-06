@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin:0;
+    height:100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins', sans-serif;
+    color:white;
+    overflow:hidden;
+}
+
+/* Floating Hearts */
+.heart {
+    position:absolute;
+    color:rgba(255,255,255,0.6);
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform:translateY(100vh); opacity:0; }
+    50% { opacity:1; }
+    100% { transform:translateY(-10vh); opacity:0; }
+}
+
+/* Card */
+.card {
+    background: rgba(255,255,255,0.18);
+    padding:40px 30px;
+    border-radius:25px;
+    text-align:center;
+    max-width:420px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(255,0,100,0.4);
+    animation: pop 1.5s ease;
+}
+
+@keyframes pop {
+    from { transform:scale(0.7); opacity:0; }
+    to { transform:scale(1); opacity:1; }
+}
+
+/* Photo */
+.photo {
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border:4px solid white;
+    object-fit:cover;
+    margin-bottom:15px;
+    box-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+/* Rose */
+.rose {
+    font-size:60px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-10px); }
+}
+
+/* Title */
+h1 {
+    font-family:'Pacifico', cursive;
+    font-size:30px;
+    margin:10px 0;
+}
+
+/* Text */
+#msg {
+    font-size:17px;
+    line-height:1.6;
+    min-height:100px;
+}
+
+/* Counter */
+#counter {
+    margin-top:10px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+/* Button */
+button {
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    background: linear-gradient(to right,#ff416c,#ff4b2b);
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:hover {
+    transform:scale(1.05);
+    box-shadow:0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Sparkle */
+.sparkle {
+    position:absolute;
+    pointer-events:none;
+    animation: fade 1s linear forwards;
+}
+
+@keyframes fade {
+    to {
+        transform:translateY(-20px);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating Hearts -->
+<span class="heart" style="left:10%;">❤️</span>
+<span class="heart" style="left:30%;">💖</span>
+<span class="heart" style="left:50%;">💕</span>
+<span class="heart" style="left:70%;">💘</span>
+<span class="heart" style="left:90%;">💞</span>
+
+<div class="card">
+
+    <img src="her.jpg" class="photo">
+
+    <div class="rose">🌹</div>
+
+    <h1>Happy Rose Day My Bache ❤️</h1>
+
+    <p id="msg"></p>
+
+    <div id="counter"></div>
+
+    <button onclick="showLove()">Click for Surprise 💌</button>
+
+</div>
+
+<script>
+
+/* Typing Effect */
+const introText =
+"To my favorite person 💕" +
+"You make my world brighter 🌸" +
+"My smile starts with you 😘";
+
+let i = 0;
+function typeText(){
+    if(i < introText.length){
+        document.getElementById("msg").innerHTML += introText.charAt(i);
+        i++;
+        setTimeout(typeText, 40);
+    }
+}
+typeText();
+
+
+/* Surprise Message */
+function showLove(){
+
+const loveText =
+"Every line of this code is written only for you 💖" +
+"You are my forever, my jaan, my peace 🌹" +
+"You are the best rose life gave me ❤️" +
+"Happy Rose Day My Love 😘" +
+"I Love You So Muchhhhh 💕" +
+"Did you like it baby? 😉💝";
+
+document.getElementById("msg").innerHTML = "";
+let j = 0;
+
+function typeLove(){
+    if(j < loveText.length){
+        document.getElementById("msg").innerHTML += loveText.charAt(j);
+        j++;
+        setTimeout(typeLove, 35);
+    }
+}
+typeLove();
+
+}
+
+
+/* Counter (Change date to when you met ❤️) */
+const startDate = new Date("2023-08-21");
+
+function updateCounter(){
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+
+    document.getElementById("counter").innerText =
+    "Together in my heart for " + days + " days 💞";
+}
+setInterval(updateCounter,1000);
+updateCounter();
+
+
+/* Sparkle on Click */
+document.addEventListener("click", function(e){
+
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.innerText = "✨";
+
+    s.style.left = e.pageX + "px";
+    s.style.top = e.pageY + "px";
+
+    document.body.appendChild(s);
+
+    setTimeout(()=>s.remove(),1000);
+});
+
+
+/* Random hearts */
+document.querySelectorAll(".heart").forEach(h => {
+    h.style.animationDelay = Math.random()*5 + "s";
+    h.style.fontSize = (15 + Math.random()*20) + "px";
+});
+
+</script>
+
+</body>
+</html>
